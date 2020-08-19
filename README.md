@@ -9,7 +9,7 @@
 
 ### Association
 - has_many :items
-- has_many :buyers
+- has_many :purchases
 
 ## items テーブル
 | Column      | Type       | Options                      |
@@ -24,13 +24,13 @@
 | user_id     | references | null:false, foreign_key:true |
 
 ### Association
-- has_one :buyer
+- has_one :purchase
 - belongs_to :user
 
-## buyers テーブル
+## purchases テーブル
 | Column      | Type       | Options                      |
 | ----------- | ---------- | ---------------------------- |
-| postal_code | text       | null:false                   |
+| postal_code | integer    | null:false                   |
 | prefectures | string     | null:false                   |
 | city        | string     | null:false                   |
 | address     | string     | null:false                   |
