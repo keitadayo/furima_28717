@@ -1,30 +1,33 @@
 # テーブル設計
 
 ## users テーブル
-| Column    | Type    | Options     |
-| --------- | ------- | ----------- |
-| nickname  | string  | null:false  |
-| email     | string  | null:false  |
-| password  | string  | null:false  |
-| name      | string  | null:false  |
-| name_kana | string  | null:false  |
-| birthday  | integer | null:false  |
+| Column          | Type    | Options     |
+| --------------- | ------- | ----------- |
+| nickname        | string  | null:false  |
+| email           | string  | null:false  |
+| password        | string  | null:false  |
+| last_name       | string  | null:false  |
+| first_name      | string  | null:false  |
+| last_name_kana  | string  | null:false  |
+| first_name_kana | string  | null:false  |
+| birthday        | integer | null:false  |
 
 ### Association
 - has_many :items
 - has_many :purchases
 
 ## items テーブル
-| Column      | Type       | Options                      |
-| ----------- | ---------- | ---------------------------- |
-| name        | string     | null:false                   |
-| text        | text       | null:false                   |
-| category    | integer    | null:false                   |
-| state       | integer    | null:false                   |
-| prefectures | integer    | null:false                   |
-| day         | integer    | null:false                   |
-| price       | integer    | null:false                   |
-| user_id     | references | null:false, foreign_key:true |
+| Column       | Type       | Options                      |
+| ------------ | ---------- | ---------------------------- |
+| name         | string     | null:false                   |
+| text         | text       | null:false                   |
+| category     | integer    | null:false                   |
+| state        | integer    | null:false                   |
+| prefectures  | integer    | null:false                   |
+| shipping_fee | integer    | null:false                   |
+| day          | integer    | null:false                   |
+| price        | integer    | null:false                   |
+| user_id      | references | null:false, foreign_key:true |
 
 ### Association
 - has_one :purchase
@@ -45,9 +48,10 @@
 | Column      | Type       | Options                      |
 | ----------- | ---------- | ---------------------------- |
 | postal_code | string     | null:false                   |
-| prefectures | string     | null:false                   |
+| prefectures | integer    | null:false                   |
 | city        | string     | null:false                   |
 | address     | string     | null:false                   |
+| building    | string     |                              |
 | phone       | string     | null:false                   |
 
 ### Association
