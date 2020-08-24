@@ -19,4 +19,7 @@ class User < ApplicationRecord
     validates :first_name, :last_name, format: { with: zenkaku, message: 'お名前(全角)は全角で入力してください。' }
     validates :first_name_kana, :last_name_kana, format: { with: zenkaku_kana, message: 'お名前カナ(全角)は全角カタカナで入力して下さい。' }
   end
+  
+  has_many :items
+
 end
