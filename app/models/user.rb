@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, :birthday, presence: true
-  
+
   at_sign = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   chara_6_more = /.{6,}/
   mix_case = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
@@ -19,4 +19,6 @@ class User < ApplicationRecord
     validates :first_name, :last_name, format: { with: zenkaku, message: 'お名前(全角)は全角で入力してください。' }
     validates :first_name_kana, :last_name_kana, format: { with: zenkaku_kana, message: 'お名前カナ(全角)は全角カタカナで入力して下さい。' }
   end
+
+  has_many :items
 end
