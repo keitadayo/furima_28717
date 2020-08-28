@@ -14,7 +14,7 @@
 
 ### Association
 - has_many :items
-- has_many :purchases
+- has_many :orders
 
 ## items テーブル
 | Column       | Type       | Options                      |
@@ -30,10 +30,10 @@
 | user_id      | references | null:false, foreign_key:true |
 
 ### Association
-- has_one :purchase
+- has_one :order
 - belongs_to :user
 
-## purchases テーブル
+## orders テーブル
 | Column      | Type       | Options                      |
 | ----------- | ---------- | ---------------------------- |
 | user_id     | references | null:false, foreign_key:true |
@@ -55,4 +55,4 @@
 | phone       | string     | null:false                   |
 
 ### Association
-- belongs_to :purchase
+- belongs_to :order
