@@ -1,4 +1,4 @@
-function tax() {
+const tax = () => {
   const itemPrice = document.getElementById("item-price")
   const addTaxPrice = document.getElementById("add-tax-price")
   const profit = document.getElementById("profit")
