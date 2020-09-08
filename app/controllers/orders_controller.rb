@@ -14,28 +14,22 @@ class OrdersController < ApplicationController
       @order.save
       redirect_to root_path
     else
-      render "index"
+      render 'index'
     end
   end
 
   private
 
   def move_to_user_login
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def if_exhibitor
-    if current_user.id == Item.find(params[:item_id]).user_id
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == Item.find(params[:item_id]).user_id
   end
 
   def if_sold
-    if Order.exists?(item_id: (params[:item_id]))
-      redirect_to root_path
-    end
+    redirect_to root_path if Order.exists?(item_id: params[:item_id])
   end
 
   def order_params
@@ -43,12 +37,11 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: Item.find(params[:item_id]).price,
       card: params[:token],
-      currency:'jpy'
+      currency: 'jpy'
     )
   end
-
 end
