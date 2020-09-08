@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :move_to_user_login
+  before_action :move_to_user_login, :if_exhibitor, :if_sold
 
   def index
     @order = OrderShippingAddress.new
@@ -21,7 +21,21 @@ class OrdersController < ApplicationController
   private
 
   def move_to_user_login
-    redirect_to new_user_session_path unless user_signed_in?
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+  end
+
+  def if_exhibitor
+    if current_user.id == Item.find(params[:item_id]).user_id
+      redirect_to root_path
+    end
+  end
+
+  def if_sold
+    if Order.exists?(item_id: (params[:item_id]))
+      redirect_to root_path
+    end
   end
 
   def order_params
